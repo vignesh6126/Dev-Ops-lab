@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Roll Number Collector</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+    textarea {
+      width: 300px;
+      height: 100px;
+    }
+    .roll-list {
+      margin-top: 20px;
+    }
+    .roll-item {
+      padding: 5px;
+      border-bottom: 1px solid #ccc;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Enter Roll Numbers</h2>
+  <textarea id="rollInput" placeholder="Enter one or multiple roll numbers, separated by commas or new lines..."></textarea><br><br>
+  <button onclick="addRollNumbers()">Submit</button>
+
+  <div class="roll-list" id="rollList">
+    <h3>Submitted Roll Numbers:</h3>
+  </div>
+
+  <script>
+    function addRollNumbers() {
+      const input = document.getElementById('rollInput').value;
+      const rollList = document.getElementById('rollList');
+
+      
+      const rolls = input.split(/[\n,]+/).map(r => r.trim()).filter(r => r !== "");
+
+      rolls.forEach(roll => {
+        const div = document.createElement('div');
+        div.className = 'roll-item';
+        div.textContent = roll;
+        rollList.appendChild(div);
+      });
+
+      document.getElementById('rollInput').value = "";
+    }
+  </script>
+
+</body>
+</html>
